@@ -8,18 +8,17 @@ prompt = "> "
 # Define a function asking if the user wants
 # to play again
 def ask_to_play_again():
-    valid_answer = False
-    while valid_answer == False:
+    while True:
         play_again = raw_input("Enter 'Y' or 'N' : ")
         play_again = play_again.upper()
         if play_again == "Y":
-            valid_answer = True
             print "Great! Resetting..."
+            return True
         elif play_again == "N":
             valid_answer = True
             print "OK. Bye!"
             global playing
-            playing = False
+            return False
 
 # Game logic
 
@@ -34,7 +33,7 @@ Welcome to the guessing game!
 I'm thinking of a number between 1 and 10.
 You have 5 guesses. Can you guess what it is?
     """
-    
+
     while num_guesses > 0:
 
         # Print number of guesses remaining and subtract 1
@@ -74,4 +73,5 @@ this time between 1 and 10."
 
     # Ask the user if they want to play again
     print "Want to play again?"
-    ask_to_play_again()
+    if not ask_to_play_again():
+        playing = False
